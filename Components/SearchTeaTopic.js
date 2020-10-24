@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-
-
 function SearchTeaTopic() {
 
   const [topics, setTopics] = useState([])
   const [number, Setnumber] = useState(0)
+  const [decnumber, Setdecnumber] = useState(0)
   const [valueInput, setValueInput] = useState("")
   const [listTopic, setListTopic] = useState([]);
 
@@ -42,13 +41,22 @@ function SearchTeaTopic() {
 
   }
 
-
    function increament (id) {
-    //  url_api.storeData.id = id;
-    //  if(id == id) {
-    Setnumber(prevNumber => ( prevNumber + 1))
+  
 
-    //  }
+  }
+
+
+  function newTopicincreament () {
+
+  }
+
+  function newincreament () {
+    Setnumber(number + 1)
+  }
+
+  function newDecrement() {
+    Setdecnumber(decnumber - 1)
   }
 
   return (
@@ -63,8 +71,8 @@ function SearchTeaTopic() {
       </form>
       </div>
       <section >
+        <h1>Next topic</h1>
         <article className="tea-topic" >
-          <h2>Next topic</h2>
           {listTopic.map((item) => item.value && (
             <article className="new-topic">
               <button>archive</button>
@@ -73,26 +81,29 @@ function SearchTeaTopic() {
               </div>
               <div className="buttons-vote">
                 <div>
-                  <button>upvote</button>
+                  <button onClick={newincreament}>upvote</button>
                   {number}
                 </div>
                 <div>
-                  <button>downvote</button>
-                  {number}
+                  <button onClick={newDecrement}>downvote</button>
+                  {decnumber}
                 </div>
                 <div></div>
               </div>
             </article>
           ))}
           {topics.map(topic => {
+
+            if(topic.discussedOn === "") {
             return (
+              <div>
               <div key={topic.id} className="list-of-topic">
                 <button>archive</button>
                 <div>{topic.title}</div>
                 <div className="button_container">
                   <div>
                   <button id={topic.id} onClick={increament}>upvote</button>
-                  {number}
+                  {topic.upvotes}
                 </div>
                 <div>
                   <button>downvote</button>
@@ -101,9 +112,34 @@ function SearchTeaTopic() {
                 </div>
                 <div>{topic.discussedOn}</div>
               </div>
-            )
+              </div>
+            )}
           })}
+            <h2>Past topic</h2>
+            {topics.map(topic => {
+              if(topic.discussedOn === topic.discussedOn) {
+                return (
+                  <div key={topic.id} className="list-of-topic">
+                    <button>archive</button>
+                    <div>{topic.title}</div>
+                    <div className="button_container">
+                      <div>
+                        <button id={topic.id} onClick={increament}>upvote</button>
+                        {topic.upvotes}
+                      </div>
+                      <div>
+                        <button>downvote</button>
+                        {topic.downvotes}
+                      </div>
+                    </div>
+                    <div>{topic.discussedOn}</div>
+                  </div>
 
+                )
+              } 
+              }
+            )}
+ 
         </article>
       </section>
 

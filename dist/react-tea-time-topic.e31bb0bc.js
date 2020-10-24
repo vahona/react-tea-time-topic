@@ -29789,6 +29789,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function SearchTeaTopic() {
   const [topics, setTopics] = (0, _react.useState)([]);
   const [number, Setnumber] = (0, _react.useState)(0);
+  const [decnumber, Setdecnumber] = (0, _react.useState)(0);
   const [valueInput, setValueInput] = (0, _react.useState)("");
   const [listTopic, setListTopic] = (0, _react.useState)([]);
 
@@ -29824,10 +29825,16 @@ function SearchTeaTopic() {
     setValueInput("");
   };
 
-  function increament(id) {
-    //  url_api.storeData.id = id;
-    //  if(id == id) {
-    Setnumber(prevNumber => prevNumber + 1); //  }
+  function increament(id) {}
+
+  function newTopicincreament() {}
+
+  function newincreament() {
+    Setnumber(number + 1);
+  }
+
+  function newDecrement() {
+    Setdecnumber(decnumber - 1);
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
@@ -29840,22 +29847,40 @@ function SearchTeaTopic() {
     onChange: handleInputChange
   }), /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleSubmit
-  }, "Add")))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
+  }, "Add")))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h1", null, "Next topic"), /*#__PURE__*/_react.default.createElement("article", {
     className: "tea-topic"
-  }, /*#__PURE__*/_react.default.createElement("h2", null, "Next topic"), listTopic.map(item => item.value && /*#__PURE__*/_react.default.createElement("article", {
+  }, listTopic.map(item => item.value && /*#__PURE__*/_react.default.createElement("article", {
     className: "new-topic"
   }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, item.value), /*#__PURE__*/_react.default.createElement("div", {
     className: "buttons-vote"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), number), /*#__PURE__*/_react.default.createElement("div", null)))), topics.map(topic => {
-    return /*#__PURE__*/_react.default.createElement("div", {
-      key: topic.id,
-      className: "list-of-topic"
-    }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
-      className: "button_container"
-    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
-      id: topic.id,
-      onClick: increament
-    }, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn));
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: newincreament
+  }, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: newDecrement
+  }, "downvote"), decnumber), /*#__PURE__*/_react.default.createElement("div", null)))), topics.map(topic => {
+    if (topic.discussedOn === "") {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+        key: topic.id,
+        className: "list-of-topic"
+      }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+        className: "button_container"
+      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+        id: topic.id,
+        onClick: increament
+      }, "upvote"), topic.upvotes), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn)));
+    }
+  }), /*#__PURE__*/_react.default.createElement("h2", null, "Past topic"), topics.map(topic => {
+    if (topic.discussedOn === topic.discussedOn) {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        key: topic.id,
+        className: "list-of-topic"
+      }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+        className: "button_container"
+      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+        id: topic.id,
+        onClick: increament
+      }, "upvote"), topic.upvotes), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn));
+    }
   }))));
 }
 

@@ -1,8 +1,12 @@
 import React from 'react'
 
 
-function Add() {
-    
+function Add({listTopic, setListTopic}) {
+
+
+
+
+
 }
 
 
