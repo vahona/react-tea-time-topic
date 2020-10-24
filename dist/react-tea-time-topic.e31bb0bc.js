@@ -29842,7 +29842,9 @@ function SearchTeaTopic() {
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: whatTopic
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Add a topic", /*#__PURE__*/_react.default.createElement("input", {
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    className: "form"
+  }, "Add a topic", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "type",
     placeholder: "Type here",

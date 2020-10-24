@@ -65,8 +65,8 @@ function SearchTeaTopic() {
     <>
     <div>
       <form onSubmit={whatTopic}>
-        <label>
-          Add a topic
+        <label className="form">
+          Add a topic 
             <input type="text" name="type" placeholder="Type here" value={valueInput} onChange={handleInputChange} />
           <button onClick={handleSubmit}>Add</button>
         </label>
