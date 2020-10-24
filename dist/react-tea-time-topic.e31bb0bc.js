@@ -29800,9 +29800,9 @@ function SearchTeaTopic() {
     try {
       const response = await fetch(url_api);
       const topic = await response.json();
-      console.log(topic);
-      const storeData = [...topic];
-      console.log(storeData);
+      console.log(topic); // const storeData = [...topic];
+      // console.log(storeData);
+
       setTopics(topic);
     } catch (e) {
       console.error(e);
@@ -29825,9 +29825,12 @@ function SearchTeaTopic() {
     setValueInput("");
   };
 
-  function increament(id) {}
+  function increament(id) {
+    const upvoteNumber = setTopics.topic.find(tea => tea.id === id);
+    upvoteNumber(Setnumber + 1);
+  }
 
-  function newTopicincreament() {}
+  function decrement(id) {}
 
   function newincreament() {
     Setnumber(number + 1);
@@ -29867,7 +29870,9 @@ function SearchTeaTopic() {
       }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
         id: topic.id,
         onClick: increament
-      }, "upvote"), topic.upvotes), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn)));
+      }, "upvote"), topic.upvotes), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: decrement
+      }, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn)));
     }
   }), /*#__PURE__*/_react.default.createElement("h2", null, "Past topic"), topics.map(topic => {
     if (topic.discussedOn === topic.discussedOn) {

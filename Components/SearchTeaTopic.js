@@ -17,8 +17,8 @@ function SearchTeaTopic() {
       const response = await fetch(url_api);
       const topic = await response.json()
       console.log(topic);
-      const storeData = [...topic];
-      console.log(storeData);
+      // const storeData = [...topic];
+      // console.log(storeData);
       setTopics(topic)
      
     } catch (e) {
@@ -42,14 +42,16 @@ function SearchTeaTopic() {
   }
 
    function increament (id) {
-  
+    const upvoteNumber = setTopics.topic.find(tea => tea.id === id);
+     upvoteNumber(Setnumber + 1)
+
 
   }
 
-
-  function newTopicincreament () {
+  function decrement (id) {
 
   }
+
 
   function newincreament () {
     Setnumber(number + 1)
@@ -106,7 +108,7 @@ function SearchTeaTopic() {
                   {topic.upvotes}
                 </div>
                 <div>
-                  <button>downvote</button>
+                  <button onClick={decrement}>downvote</button>
                   {topic.downvotes}
                 </div>
                 </div>
