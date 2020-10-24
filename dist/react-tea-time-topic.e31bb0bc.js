@@ -29786,18 +29786,23 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const url_api = "https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c70331ca4a16bb99/raw/6da767327041de13693181c2cb09459b0a3657a1/topics.json";
-
 function SearchTeaTopic() {
-  const [topics, seTopics] = (0, _react.useState)([]);
-  const [number, Setnumber] = (0, _react.useState)(null);
+  const [topics, setTopics] = (0, _react.useState)([]);
+  const [number, Setnumber] = (0, _react.useState)(0);
+  const [valueInput, setValueInput] = (0, _react.useState)("");
+  const [listTopic, setListTopic] = (0, _react.useState)([]);
 
-  const whatTopic = async () => {
+  const whatTopic = async e => {
+    // e.preventDefault();
+    const url_api = "https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c70331ca4a16bb99/raw/6da767327041de13693181c2cb09459b0a3657a1/topics.json";
+
     try {
       const response = await fetch(url_api);
       const topic = await response.json();
       console.log(topic);
-      seTopics(topic);
+      const storeData = [...topic];
+      console.log(storeData);
+      setTopics(topic);
     } catch (e) {
       console.error(e);
     }
@@ -29807,20 +29812,50 @@ function SearchTeaTopic() {
     whatTopic();
   }, []);
 
+  const handleInputChange = e => {
+    setValueInput(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setListTopic(prevvalueInput => prevvalueInput.concat({
+      value: valueInput
+    }));
+    setValueInput("");
+  };
+
   function increament(id) {
-    Setnumber(prevNumber => prevNumber + 1);
+    //  url_api.storeData.id = id;
+    //  if(id == id) {
+    Setnumber(prevNumber => prevNumber + 1); //  }
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Add a topic", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: whatTopic
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Add a topic", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    placeholder: "Type here"
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Add"))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Next topic"), topics.map(topic => {
+    name: "type",
+    placeholder: "Type here",
+    value: valueInput,
+    onChange: handleInputChange
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleSubmit
+  }, "Add")))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
+    className: "tea-topic"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Next topic"), listTopic.map(item => item.value && /*#__PURE__*/_react.default.createElement("article", {
+    className: "new-topic"
+  }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, item.value), /*#__PURE__*/_react.default.createElement("div", {
+    className: "buttons-vote"
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), number), /*#__PURE__*/_react.default.createElement("div", null)))), topics.map(topic => {
     return /*#__PURE__*/_react.default.createElement("div", {
-      key: topic.id
-    }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+      key: topic.id,
+      className: "list-of-topic"
+    }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+      className: "button_container"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
       id: topic.id,
       onClick: increament
-    }, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), topic.downvotes));
+    }, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn));
   }))));
 }
 
@@ -29888,7 +29923,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49765" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53631" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
