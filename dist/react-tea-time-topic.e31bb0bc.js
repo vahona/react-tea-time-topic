@@ -29826,8 +29826,8 @@ function SearchTeaTopic() {
   };
 
   function increament(id) {
-    const upvoteNumber = setTopics.topic.find(tea => tea.id === id);
-    upvoteNumber(Setnumber + 1);
+    const upvoteNumber = topic.find(tea => tea.id === id);
+    upvoteNumber + 1;
   }
 
   function decrement(id) {}
@@ -29887,14 +29887,14 @@ function SearchTeaTopic() {
         onClick: decrement
       }, "downvote"), topic.downvotes)), /*#__PURE__*/_react.default.createElement("div", null, topic.discussedOn)));
     }
-  }), /*#__PURE__*/_react.default.createElement("h2", null, "Past topic"), topics.map(topic => {
+  }), /*#__PURE__*/_react.default.createElement("h2", null, "Past topic"), topics.map((topic, i) => {
     if (topic.discussedOn === topic.discussedOn) {
       return /*#__PURE__*/_react.default.createElement("div", {
         key: topic.id,
         className: "list-of-topic"
       }, /*#__PURE__*/_react.default.createElement("button", {
         className: "delete",
-        onClick: deletingTopic
+        onClick: () => deletingTopic(i)
       }, "Delete"), /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
         className: "button_container"
       }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {

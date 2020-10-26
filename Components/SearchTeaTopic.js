@@ -42,8 +42,8 @@ function SearchTeaTopic() {
   }
 
    function increament (id) {
-    const upvoteNumber = setTopics.topic.find(tea => tea.id === id);
-     upvoteNumber(Setnumber + 1)
+    const upvoteNumber = topic.find(tea => tea.id === id);
+     upvoteNumber + 1
 
 
   }
@@ -66,8 +66,8 @@ function SearchTeaTopic() {
    setListTopic([...topics.slice(0, i),...topics.slice(i+1)])
     setTopics([...topics.slice(0, i), ...topics.slice(i + 1)])
 
-
   }
+
 
   return (
     <>
@@ -130,11 +130,11 @@ function SearchTeaTopic() {
             )}
           })}
             <h2>Past topic</h2>
-            {topics.map(topic => {
+            {topics.map((topic, i) => {
               if(topic.discussedOn === topic.discussedOn) {
                 return (
                   <div key={topic.id} className="list-of-topic">
-                    <button className="delete" onClick={deletingTopic}>Delete</button>
+                    <button className="delete" onClick={() => deletingTopic(i)}>Delete</button>
                     <button>archive</button>
                     <div>{topic.title}</div>
                     <div className="button_container">
