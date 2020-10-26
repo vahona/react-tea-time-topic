@@ -61,6 +61,14 @@ function SearchTeaTopic() {
     Setdecnumber(decnumber - 1)
   }
 
+
+  function deletingTopic (i) {
+   setListTopic([...topics.slice(0, i),...topics.slice(i+1)])
+    setTopics([...topics.slice(0, i), ...topics.slice(i + 1)])
+
+
+  }
+
   return (
     <>
     <div>
@@ -77,6 +85,7 @@ function SearchTeaTopic() {
         <article className="tea-topic" >
           {listTopic.map((item) => item.value && (
             <article className="new-topic">
+              <button className="delete" onClick={deletingTopic}>Delete</button>
               <button>archive</button>
               <div>
                 {item.value}
@@ -94,12 +103,15 @@ function SearchTeaTopic() {
               </div>
             </article>
           ))}
-          {topics.map(topic => {
+          {topics.map((topic, i) => {
 
             if(topic.discussedOn === "") {
             return (
               <div>
               <div key={topic.id} className="list-of-topic">
+                  <button className="delete"
+                   onClick={() => deletingTopic(i)}
+                  >Delete</button>
                 <button>archive</button>
                 <div>{topic.title}</div>
                 <div className="button_container">
@@ -122,6 +134,7 @@ function SearchTeaTopic() {
               if(topic.discussedOn === topic.discussedOn) {
                 return (
                   <div key={topic.id} className="list-of-topic">
+                    <button className="delete" onClick={deletingTopic}>Delete</button>
                     <button>archive</button>
                     <div>{topic.title}</div>
                     <div className="button_container">
@@ -136,7 +149,6 @@ function SearchTeaTopic() {
                     </div>
                     <div>{topic.discussedOn}</div>
                   </div>
-
                 )
               } 
               }

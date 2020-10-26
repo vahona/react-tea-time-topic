@@ -20,6 +20,10 @@ body {
 .button_container {
     display: flex;
 }
+
+.new-topic {
+    width: 50%;
+}
 .buttons-vote {
     display: flex;
 }

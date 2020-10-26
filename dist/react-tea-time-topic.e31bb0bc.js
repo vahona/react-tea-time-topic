@@ -29840,6 +29840,11 @@ function SearchTeaTopic() {
     Setdecnumber(decnumber - 1);
   }
 
+  function deletingTopic(i) {
+    setListTopic([...topics.slice(0, i), ...topics.slice(i + 1)]);
+    setTopics([...topics.slice(0, i), ...topics.slice(i + 1)]);
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: whatTopic
   }, /*#__PURE__*/_react.default.createElement("label", {
@@ -29856,18 +29861,24 @@ function SearchTeaTopic() {
     className: "tea-topic"
   }, listTopic.map(item => item.value && /*#__PURE__*/_react.default.createElement("article", {
     className: "new-topic"
-  }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, item.value), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "delete",
+    onClick: deletingTopic
+  }, "Delete"), /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, item.value), /*#__PURE__*/_react.default.createElement("div", {
     className: "buttons-vote"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: newincreament
   }, "upvote"), number), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: newDecrement
-  }, "downvote"), decnumber), /*#__PURE__*/_react.default.createElement("div", null)))), topics.map(topic => {
+  }, "downvote"), decnumber), /*#__PURE__*/_react.default.createElement("div", null)))), topics.map((topic, i) => {
     if (topic.discussedOn === "") {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
         key: topic.id,
         className: "list-of-topic"
-      }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        className: "delete",
+        onClick: () => deletingTopic(i)
+      }, "Delete"), /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
         className: "button_container"
       }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
         id: topic.id,
@@ -29881,7 +29892,10 @@ function SearchTeaTopic() {
       return /*#__PURE__*/_react.default.createElement("div", {
         key: topic.id,
         className: "list-of-topic"
-      }, /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        className: "delete",
+        onClick: deletingTopic
+      }, "Delete"), /*#__PURE__*/_react.default.createElement("button", null, "archive"), /*#__PURE__*/_react.default.createElement("div", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
         className: "button_container"
       }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
         id: topic.id,
@@ -29955,7 +29969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53631" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62689" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
